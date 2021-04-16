@@ -1,7 +1,7 @@
 # Landing Page Project - DEMO
 
 ## Learn learn learn
-The starter project has some HTML and CSS styling to display a static version of the Landing Page project. I had to convert this project from a static project to an interactive one. This required modifying the HTML and CSS files, but primarily the JavaScript file.
+The starter project had some HTML and CSS styling to display a static version of the Landing Page project. I had to convert this project from a static project to an interactive one. This required modifying the HTML and CSS files, but primarily the JavaScript file.
 
 ## The technologies used:
 - HTML
