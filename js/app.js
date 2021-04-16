@@ -18,11 +18,10 @@
  * 
 */
 
-// navigation global var
-const navigation = document.getElementById('navbar__list');
 
-// sections global var
+const navbar = document.querySelector('#navbar__list');
 const sections = document.querySelectorAll('section');
+
 
 
 /**
@@ -31,84 +30,52 @@ const sections = document.querySelectorAll('section');
  * 
 */
 
-
-
 /**
  * End Helper Functions
  * Begin Main Functions
  * 
 */
 
-// build the nav
-const navBuilder = () => {
+function navbarBuilder() {
 
-    let navUI = '';
-
-    // looping over all sections
+    //loops over the sections to create the navbar with the title from every section
     sections.forEach(section => {
 
-        const sectionID = section.id;
-        const sectionDataNav = section.dataset.nav;
+        const title = section.dataset.nav;
+        const listItem = document.createElement("li");
+        const link = document.createElement("div");
 
-        navUI += `<li><a class="menu__link" href="#${sectionID}">${sectionDataNav}</a></li>`
-    });
-
-    // append all elements to navegation
-    navigation.innerHTML = navUI;
-};
-
-navBuilder();
-
-// Add class 'active' to section when near top of viewport
-
-// getting the largest value that's less or equal to the number
-const offset = (section) => {
-    return Math.floor(section.getBoundingClientRect().top);
-};
-
-//remove the active class
-const removeActive = (section) => {
-    section.classList.remove('your-active-class');
-    section.style.cssText = "background-color: linear-gradient(0deg, rgba(255, 255, 255, .1) 0%, rgba(255, 255, 255, .2) 100%);";
-};
-
-// adding the active class
-const addActive = (conditional, section) => {
-    if (conditional) {
-        section.classList.add('your-active-class');
-        section.style.cssText = "background-color: yellow;";
-    };
-};
-
-//implementing the actual function
-const sectionActivation = () => {
-    sections.forEach(section => {
-        const elementOffset = offset(section);
-
-        inviewport = () => elementOffset < 150 && elementOffset >= -150;
-
-        removeActive(section);
-        addActive(inviewport(), section);
-    });
-};
-
-window.addEventListener('scroll', sectionActivation);
-
-// Scroll to anchor ID using scrollTO event
-
-const scrolling = () => {
-
-    const links = document.querySelectorAll('.navbar__menu a');
-    links.forEach(link => {
+        //for the link scrolls to the appropriate section with smooth behavior
         link.addEventListener('click', () => {
-            for(i=0 ; i<sections ; i++){
-                sections[i].addEventListener('click', sectionScroll(link));
-            }
+           section.scrollIntoView({ behavior: "smooth" });
         });
+
+        // creates a class for each link (to be used in makeSectionActive function to highlight the active item)    
+        link.classList.add(`navbar__link__${section.id}`);
+
+        //appending everything
+        link.appendChild(document.createTextNode(title));
+        listItem.appendChild(link);
+        navbar.appendChild(listItem);
+
     });
 };
 
-scrolling();
+//highlights the active section by adding the class called "your-active-class" for sections and the class "active" in the navbar
+function makeSectionActive() {
+    for (const section of sections) {
+        
+        const sectionInfos = section.getBoundingClientRect();
+        if (sectionInfos.top <= 150 && sectionInfos.bottom >= 150) {
+            section.classList.add("your-active-class");
+            document.querySelector(`.navbar__link__${section.id}`).classList.add("active");
+        } else {
+            section.classList.remove("your-active-class");
+            document.querySelector(`.navbar__link__${section.id}`).classList.remove("active");
+        }
+    }
+}
+
 
 /**
  * End Main Functions
@@ -116,10 +83,11 @@ scrolling();
  *
 */
 
-// Build menu 
 
-// Scroll to section on link click
+// Listen to scroll to make sections active
+document.addEventListener("scroll", () => {
+    makeSectionActive();
+});
 
-// Set sections as active
-
-
+// build the navbar when the page loads
+document.body.onload = navbarBuilder()

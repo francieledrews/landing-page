@@ -11,8 +11,12 @@
 /* ---- Base Rules ---- */
 
 body {
-    background: rgb(136, 203, 171);
-    background: linear-gradient(0deg, rgba(136, 203, 171, 1) 0%, rgba(0, 13, 60, 1) 100%);
+    background: #ECE9E6;
+    /* fallback for old browsers */
+    background: -webkit-linear-gradient(to top, #FFFFFF, #ECE9E6);
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to top, #FFFFFF, #ECE9E6);
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     margin: 0;
     font-family: 'Merriweather', serif;
     color: #fff;
@@ -22,14 +26,14 @@ body {
 
 h1 {
     font-family: 'Fira Sans', sans-serif;
-    font-size: 3em;
-    margin: 2em 1rem;
+    font-size: 4rem;
+    margin-left: 2rem;
 }
 
-@media only screen and (min-width: 35em) {
-    h1 {
-        font-size: 7em;
-        margin: 2em 4rem 1em;
+@media screen and (min-width: 600px) {
+    .main__hero h1 {
+        font-size: 6em;
+        margin-left: 2.5rem;
     }
 }
 
@@ -37,23 +41,37 @@ h2 {
     border-bottom: 1px solid #cc1;
     font-family: 'Oxygen', Sans-Serif;
     font-size: 3em;
-    color: #fff;
+    color: #161616;
 }
 
 p {
     line-height: 1.6em;
-    color: #eee;
+    color: #161616;
 }
 
 /* ---- Layout Rules ---- */
 
 main {
-    margin: 10vh 1em 10vh;
+    margin: 0;
 }
 
-.main-hero {
-    min-height: 40vh;
-    padding-top: 3em;
+.main__hero {
+    min-height: 100vh;
+    background-image: url('../assets/hero.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: auto;
+    margin: 0;
+    background-position: right;
+    display: flex;
+    align-items: center;
+}
+
+.main__hero span {
+    background-color: #161616;
+    padding: 0 1rem;
+    -webkit-box-decoration-break: clone;
+    color: #fff;
 }
 
 section {
@@ -64,11 +82,24 @@ section {
 /* ---- Module Rules ---- */
 
 /* Navigation Styles*/
+.navbar {
+    padding: 0.5rem 0 !important;
+    position: fixed;
+    top: 0;
+}
+.navbar__menu {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 0;
+    padding: 0;
+}
 
 .navbar__menu ul {
     padding-left: 0;
     margin: 0;
     text-align: right;
+    background: #161616;
 }
 
 .navbar__menu li {
@@ -80,7 +111,7 @@ section {
     padding: 1em;
     font-weight: bold;
     text-decoration: none;
-    color: #000;
+    color: #161616;
 }
 
 .navbar__menu .menu__link:hover {
@@ -89,20 +120,55 @@ section {
     transition: ease 0.3s all;
 }
 
+#navbar__list {
+    color: #fff;
+    text-decoration: none;
+    width: 100%;
+}
+
+#navbar__list li {
+    padding: 1rem;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+#nav img {
+    display: none;
+}
+
+@media only screen and (min-width: 600px) {
+    #nav img {
+        display: unset;
+        width: 50px;
+        height: 50px;
+        padding: 0.5rem;
+        margin-left: 3.5rem;
+    }
+}
+
 /* Header Styles */
 
 .page__header {
-    background: #fff;
+    background: #161616;
     position: fixed;
     top: 0;
     width: 100%;
     z-index: 5;
+    height: 4rem;
+    display: flex;
+    flex-direction: column;
+}
+
+@media only screen and (min-width: 600px) {
+    .page__header {
+        flex-direction: row;
+    }
 }
 
 /* Footer Styles */
 
 .page__footer {
-    background: #000;
+    background: #161616;
     padding: 3em;
     color: #fff;
 }
@@ -118,12 +184,20 @@ section {
 .landing__container {
     padding: 1em;
     text-align: left;
+    margin-top: 4rem;
+    padding-top: 8rem;
 }
 
-@media only screen and (min-width: 35em) {
+.active {
+    color: #cc1;
+}
+
+@media only screen and (min-width: 600px) {
     .landing__container {
         max-width: 50em;
-        padding: 4em;
+        padding: 7em 4em 0 4em;
+        margin-top: 0;
+        margin-bottom: 0;
     }
 }
 
@@ -181,7 +255,7 @@ section:nth-of-type(3n) .landing__container::after {
     transition: ease 0.5s all;
 }
 
-section:nth-of-type(3n + 1) .landing__container::after {
+section:nth-of-type(3n+1) .landing__container::after {
     content: '';
     background: rgb(255, 255, 255);
     background: linear-gradient(0deg, rgba(255, 255, 255, .1) 0%, rgba(255, 255, 255, .2) 100%);
@@ -225,22 +299,5 @@ section.your-active-class .landing__container::after {
     }
     to {
         transform: rotate(360deg) translate(-1em) rotate(-360deg);
-    }
-}
-
-@media only screen and (max-width: 420px) {
-    /*Navegation Styles*/
-    .navbar__menu ul {
-        text-align: center;
-    }
-    .navbar__menu li {
-        display: flex;
-        flex-direction: column;
-    }
-    .navbar__menu .menu__link {
-        padding: 0.5rem;
-    }
-    main {
-        margin-top: 15rem;
     }
 }
