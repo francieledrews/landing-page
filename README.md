@@ -15,7 +15,8 @@ The starter project has some HTML and CSS styling to display a static version of
 
 ## How to use the project:
 Just open the index.html in any browser. How? 
-first - by clicking with the right mouse button on the file;
-second - selecting the option ```open with```; and then
-third - by clicking on the browser of your choice or available.
+- first - by clicking with the right mouse button on the file;
+- second - selecting the option ```open with```; and then
+- third - by clicking on the browser of your choice or available.
+
 Then ta-dah!!
