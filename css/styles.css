@@ -82,17 +82,42 @@ section {
 /* ---- Module Rules ---- */
 
 /* Navigation Styles*/
-.navbar {
-    padding: 0.5rem 0 !important;
-    position: fixed;
-    top: 0;
-}
+
 .navbar__menu {
     display: flex;
     flex-direction: column;
-    position: fixed;
+    align-items: center;
+    justify-content: center;
+    position: sticky;
     top: 0;
+    z-index: 700;
+    margin: 0;
+    width: 100%;
     padding: 0;
+}
+
+/*Style 'burger-menu' label button and display it by default*/
+
+.burger-menu {
+    display: block;
+    margin-top: 20px;
+}
+
+.burger-menu img {
+    width: 20px;
+    height: 20px;
+}
+
+/*Hide checkbox*/
+
+input[type=checkbox] {
+    display: none;
+}
+
+/*Show menu when invisible chechbox is checked*/
+
+input[type=checkbox]:checked~#navbar__list {
+    display: block;
 }
 
 .navbar__menu ul {
@@ -100,49 +125,60 @@ section {
     margin: 0;
     text-align: right;
     background: #161616;
+    margin-block-end: 0;
+    margin-block-start: 0;
+    padding-inline-start: 0;
 }
 
-.navbar__menu li {
-    display: inline-block;
-}
-
-.navbar__menu .menu__link {
-    display: block;
-    padding: 1em;
-    font-weight: bold;
-    text-decoration: none;
-    color: #161616;
-}
-
-.navbar__menu .menu__link:hover {
-    background: #333;
-    color: #fff;
-    transition: ease 0.3s all;
-}
+/*Make dropdown links appear inline*/
 
 #navbar__list {
     color: #fff;
     text-decoration: none;
     width: 100%;
+    position: static;
+    display: none;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
 }
 
 #navbar__list li {
-    padding: 1rem;
+    padding: 0.2rem;
     font-size: 20px;
     cursor: pointer;
+    text-align: center;
+    width: 100%;
 }
 
-#nav img {
+.navbar__menu img {
     display: none;
 }
 
 @media only screen and (min-width: 600px) {
-    #nav img {
+    .navbar__menu {
+        display: flex;
+        flex-direction: row;
+    }
+    .navbar__menu img {
         display: unset;
         width: 50px;
         height: 50px;
         padding: 0.5rem;
-        margin-left: 3.5rem;
+        margin-left: 1rem;
+    }
+    /*Hide burger-menu*/
+    .burger-menu {
+        display: none;
+    }
+    #navbar__list {
+        display: flex;
+        flex-direction: row;
+        margin-right: 10px;
+    }
+    #navbar__list li {
+        display: inline-block;
+        padding: 1rem;
     }
 }
 
