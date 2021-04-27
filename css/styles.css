@@ -70,7 +70,6 @@ main {
 .main__hero span {
     background-color: #161616;
     padding: 0 1rem;
-    -webkit-box-decoration-break: clone;
     color: #fff;
 }
 
@@ -100,7 +99,7 @@ section {
 
 .burger-menu {
     display: block;
-    margin-top: 20px;
+    margin-top: 1.2rem;
 }
 
 .burger-menu img {
@@ -151,7 +150,7 @@ input[type=checkbox]:checked~#navbar__list {
     width: 100%;
 }
 
-.navbar__menu img {
+.navbar-brand {
     display: none;
 }
 
@@ -159,9 +158,10 @@ input[type=checkbox]:checked~#navbar__list {
     .navbar__menu {
         display: flex;
         flex-direction: row;
+        justify-content: space-between;
     }
-    .navbar__menu img {
-        display: unset;
+    .navbar-brand {
+        display: inline;
         width: 50px;
         height: 50px;
         padding: 0.5rem;
@@ -174,11 +174,13 @@ input[type=checkbox]:checked~#navbar__list {
     #navbar__list {
         display: flex;
         flex-direction: row;
+        justify-content: flex-end;
         margin-right: 10px;
     }
     #navbar__list li {
         display: inline-block;
         padding: 1rem;
+        width: auto;
     }
 }
 
@@ -186,17 +188,17 @@ input[type=checkbox]:checked~#navbar__list {
 
 .page__header {
     background: #161616;
-    position: fixed;
+    position: sticky;
     top: 0;
     width: 100%;
     z-index: 5;
     height: 4rem;
-    display: flex;
-    flex-direction: column;
 }
 
 @media only screen and (min-width: 600px) {
     .page__header {
+        height: 5rem;
+        display: flex;
         flex-direction: row;
     }
 }
